@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>aliyundriver_token_python</title>
+</head>
+<body>
+	<h1>用阿里云盘app扫描二维码:</h1>
+	<img src="data:image/png;base64,{{ img_data }}" style="width: 300px;height: 300px;">
+	<br>
+	<div id="token"></div>
+
+	<div id="result"></div>
+	<script>
+	  let intervalId = setInterval(getData, 1000);
+  
+	  function getData() {
+		fetch('/querystatus')
+		.then(response => response.json())
+		.then(data => {
+		  console.log(data);
+		  document.getElementById('result').innerHTML = '<p>' + JSON.stringify(data.data) + '</p>';
+		  if (data.data.qrCodeStatus === 'CONFIRMED') {
+			var biz=data.data.bizExt
+			bizdata=JSON.parse(atob(biz)) 
+			token=bizdata.pds_login_result.refreshToken
+			document.getElementById('token').innerHTML = '<p>' + atob(biz) + '</p>';
+
+
+			clearInterval(intervalId);
+		  }
+		})
+		.catch(error => console.error(error));
+	  }
+	</script>
+</body>
+</html>

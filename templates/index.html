@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>生成二维码</title>
+</head>
+<body>
+	<h1>生成二维码</h1>
+	<form action="{{ url_for('generate_qrcode') }}" method="POST">
+		<label for="data">数据:</label>
+		<input type="text" id="data" name="data">
+		<button type="submit">生成二维码</button>
+	</form>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>扫描二维码</title>
+</head>
+<body>
+	<h1>扫描二维码</h1>
+	<form action="{{ url_for('scan_qrcode_result') }}" method="POST" enctype="multipart/form-data">
+		<label for="file">上传二维码:</label>
+		<input type="file" id="file" name="file">
+		<button type="submit">扫描二维码</button>
+	</form>
+</body>
+</html>
